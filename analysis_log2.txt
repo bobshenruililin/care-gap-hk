@@ -1,0 +1,44 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:            fw_2024_pct   R-squared:                       0.876
+Model:                            OLS   Adj. R-squared:                  0.859
+Method:                 Least Squares   F-statistic:                     52.85
+Date:                Fri, 17 Jul 2026   Prob (F-statistic):           1.61e-07
+Time:                        11:00:45   Log-Likelihood:                -32.939
+No. Observations:                  18   AIC:                             71.88
+Df Residuals:                      15   BIC:                             74.55
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -3.8007      3.490     -1.089      0.293     -11.239       3.638
+income_10k     5.1218      0.538      9.527      0.000       3.976       6.268
+floor_m2      -0.1913      0.070     -2.716      0.016      -0.341      -0.041
+==============================================================================
+Omnibus:                       10.124   Durbin-Watson:                   2.398
+Prob(Omnibus):                  0.006   Jarque-Bera (JB):                7.129
+Skew:                           1.247   Prob(JB):                       0.0283
+Kurtosis:                       4.813   Cond. No.                         340.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+VIF: {'const': 80.30254089328531, 'income_10k': 1.0141231170667515, 'floor_m2': 1.014123117066752}
+Moran F/W: {'I': np.float64(0.5907110094932841), 'EI': -0.058823529411764705, 'p_perm': 0.0014}
+Moran resid: {'I': np.float64(-0.4120012428898224), 'EI': -0.058823529411764705, 'p_perm': 0.0365}
+Outcome RCHE: {'r2': 0.13439115040805993, 'params': {'const': 45.289305131982964, 'fw_2024_pct': 1.550471480636013, 'pct_65_2024': -0.32354557988105226, 'income_10k': -7.987745960004325}, 'pvalues': {'const': 0.1164186451026042, 'fw_2024_pct': 0.16526297487719313, 'pct_65_2024': 0.6910468309102273, 'income_10k': 0.21838353086764667}, 'bse': {'const': 27.062847503794313, 'fw_2024_pct': 1.0590070733719803, 'pct_65_2024': 0.7973664848007302, 'income_10k': 6.198181943459906}}
+CDRS weights: {'w_R': 0.07198855120479597, 'w_H': 0.2551469802174685, 'w_F': 0.6728644685777355, 'sign_F': 1.0, 'raw_coefs': {'b_R': 0.15078443217929038, 'b_H': -0.5344209862607786, 'b_F': 1.4093558646496915}, 'rche_model_rsq': 0.037095969338397095}
+Top CDRS:
+          district      cdrs                       quadrant
+5    Sham Shui Po  1.780020                     II_exposed
+2         Eastern  1.099745                     I_buffered
+11       Tuen Mun  1.077326               III_low_pressure
+8       Kwun Tong  1.042287                     II_exposed
+4   Yau Tsim Mong  1.024227  IV_low_burden_high_mitigation
+7    Wong Tai Sin  0.893520                     II_exposed
+9      Kwai Tsing  0.637945                     II_exposed
+1        Wan Chai  0.523528                     I_buffered
+Wrote figures to /Users/macbookpro/Projects/care-gap-hk/figures
+Wrote /Users/macbookpro/Projects/care-gap-hk/data/processed/district_results.csv

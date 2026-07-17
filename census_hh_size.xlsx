@@ -1,0 +1,1371 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="2021 Population Census" />
+    <meta name="keywords" content="2021 Population Census" />
+    <meta name="last-modified" content="23/06/2021 09:00:00 AM" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title name="DPtitle">2021 Population Census - District Profiles</title>
+
+    <!--JS-->
+	
+    <script type="text/javascript" src="/js/jquery_min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+	    
+    <link rel="stylesheet" href="../scripts/css/style_d4_1.css" />
+
+    <script type="text/javascript" src="../js/jq_slider.min.js"></script>
+    <script type="text/javascript" src="../js/en/footer.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/setfonts.js"></script>
+    <script type="text/javascript" src="../js/switch_language.js"></script>
+    <script type="text/javascript" src="../js/slider.js"></script>
+
+    <link rel="stylesheet" href="../css/slider.css" type="text/css" />
+
+    <script type="text/javascript" src="../js/en/header.js"></script>
+    <script type="text/javascript" src="../js/en/BackToTop.js"></script>
+
+    <!--Awesome-->
+    <link href="/fontawesome/css/all.css" rel="stylesheet">
+    <script defer src="/fontawesome/js/all.js"></script>
+
+    <!--CSS-->
+	<link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" type="text/css">
+    <link id="normalCss" rel="stylesheet" href="/css/en/style_en.css" type="text/css" />
+    <link id="normalCss_normal" href="/css/en/style_font_site_en_m.css" rel="stylesheet" type="text/css"title="Normal Version">
+    <link id="modeSmall" href="/css/en/style_font_site_en_s.css" rel="stylesheet" type="text/css" title="Normal Version">
+    <link id="modeLarge" href="/css/en/style_font_site_en_l.css" media="screen" rel="alternate stylesheet" type="text/css" title="Large Version">
+    <link id="modeNormal" href="/css/en/style_font_site_en_m.css" media="screen" rel="alternate stylesheet"type="text/css" title="Normal Version">
+    <link rel="stylesheet" href="/css/en/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="../css/en/responsive_index.css" type="text/css">
+    <link rel="stylesheet" href="../scripts/css/tables-dp.min.css">
+
+    <!--Update date-->
+    <script type="text/javascript">filedate = "03/27/2024";/**Month/Day/Year**/</script>
+
+    <!--this condition is only for IE 8 and lesser browsers.-->
+    <!--[if lte IE 8]> // lte means LESS THAN & EQUAL TO IE8.-->
+    <script>
+        document.createElement('header');
+        document.createElement('nav');
+        document.createElement('article');
+        document.createElement('section');
+        document.createElement('aside');
+        document.createElement('footer');
+    </script>
+
+    <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js?v=1558491746078#pubid=ra-5c6a5dd20dceac39"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158804008-1"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-158804008-1');
+    </script>
+</head>
+
+<body id='body' data-target=".navbar" data-offset="50">
+    <script>
+        var just_change_language = false;
+
+        $(function () {
+            $("#Characteristicstabs").tabs({
+                activate: function () {
+                    var active = $('#Characteristicstabs').tabs('option', 'active');
+                    var selectedCharacteristics = $("#Characteristicstabs ul>li a").eq(active).attr("id").replace("Characteristicstabbox", "");
+                    document.getElementById("defatltCharacteristics").value = selectedCharacteristics;
+                    document.getElementById('dp-select-Characteristics').value = selectedCharacteristics;
+                    selectTables(false);
+                    changeselectedtabsid("Characteristicstabs");
+                    ShowTableContents();
+                },
+                active: 1
+            });
+        });
+
+		function getDP(no){
+			var val='';
+			if (no == 1) {
+				return 'District Council Districts';
+			} else if (no == 2) {
+				return 'District Council Constituency Areas';
+			} else if (no == 3) {
+				return 'Tertiary Planning Units';
+			} else if (no == 4) {
+				return 'Subunits';
+			} else if (no == 5) {
+				return 'New Towns';
+			} else {
+				return 'Major Housing Estates';
+			}
+		}
+		function getCB(no){
+			var val='';
+			if (no == 1) {
+				return 'Demographic Characteristics';
+			} else if (no == 2) {
+				return 'Educational Characteristics';
+			} else if (no == 3) {
+				return 'Economic Characteristics';
+			} else if (no == 4) {
+				return 'Household Characteristics';
+			} else if (no == 5) {
+				return 'Housing Characteristics';
+			} else {
+				return 'Internal Migration Characteristics';
+			}
+		}
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+
+		function div_click(e){
+			//console.log('div click');
+			//alert('div click');
+			//alert(id);
+			var selfName = e.name;
+			var event_category = '';
+			//var selfName = id;
+			//console.log(selfName);
+			//alert(selfName);
+			var mainv = document.getElementById('CurrentDPMain');
+			var prev = document.getElementById('PrevDPMain');
+
+			if ( mainv.value != prev.value ){
+				//document.getElementById("CurrentDPSub").setAttribute('value','Demographic Characteristics');
+				document.getElementById("CurrentDPSub").value = getCB(1);
+				document.getElementById("PrevDPMain").setAttribute('value',selfName);
+			}
+			if ( mainv == 'Street Blocks'){
+				//document.getElementById("CurrentDPSub").setAttribute('value','Internal Migration Characteristics');
+			}
+			
+			try{
+			    var tabName = e.href.split("#")[1];
+			    console.log("tabName",tabName);
+			    //$(".mt-4").hide();
+    			if(tabName === "DCCA-tab"){
+    			    $(".mt-4").hide();
+    			}else if(tabName === "ESTATE-tab"){
+    			    $(".mt-4").hide();
+    			}else if(tabName === "LTPUG-tab"){
+    			    $(".mt-4").show();
+                }else if(tabName === "SB-tab") {
+                    $(".mt-4").hide();
+                    //$(".download_sections").hide();
+    			}else if(tabName === "NT-tab"){
+    			    $(".mt-4").hide();
+    			}else if(tabName === "DC18-tab"){
+    			    $(".mt-4").show();
+    			}
+			}catch(err){
+			    console.log(err);
+			}
+
+			document.getElementById("CurrentDPMain").setAttribute('value',selfName);
+			var subv = document.getElementById('CurrentDPSub');
+
+			event_category = selfName + ' / ' + subv.value;
+			//console.log(event_category);
+
+			gtag('event','play', {
+			'send_to': 'UA-158804008-1',
+			'event_category':''+event_category+'',
+			'event_action':'click',
+			'event_label':'click',
+			'event_value':'1'
+			});
+		}
+
+		function sub_click(e){
+			//console.log('sub_click');
+			//alert('sub_click');
+			//alert(id);
+			var selfName = e.name;
+			//var selfName = id;
+			//console.log(selfName);
+			//alert(selfName);
+			document.getElementById("CurrentDPSub").setAttribute('value',selfName);
+			var mainv = document.getElementById('CurrentDPMain');
+			event_category = mainv.value + ' / ' + selfName;
+			console.log(event_category);
+
+			gtag('event','play', {
+			'send_to': 'UA-158804008-1',
+			'event_category':''+event_category+'',
+			'event_action':'click',
+			'event_label':'click',
+			'event_value':'1'
+			});
+		}
+    </script>
+
+    <script src="../scripts/es6-promise.auto.min.js"></script>
+    <script src="../scripts/jquery.csv.min.js"></script>
+    <script src="../scripts/SheetJS/shim.min.js" async></script>
+    <script src="../scripts/SheetJS/xlsx.full.min.js" async></script>
+    <script src="../scripts/lz-string.min.js"></script>
+    <script src="../scripts/jszip.min.js"></script>
+    <script src="../scripts/FileSaver.js"></script>
+    <script src="../js/cnsd_cdm-dp.js"></script>
+    <script>function CheckEnterinput(event) { if (13 == event.keyCode) { searchDC(); } }</script>
+    <script src="../scripts/DPControl.js"></script>
+
+    <script src="../scripts/FileDownload-dp.js"></script>
+    <script src="../scripts/BasicFunction.js"></script>
+
+    <!--<script src="../scripts/cnds_cdm_mig.js"></script>-->
+
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css" />
+
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+
+    <link rel="stylesheet" href="../css/en/jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="../css/district_profiles.css" type="text/css" />
+
+    <header>
+        <div id="header">
+            <script type="text/javascript">header();</script>
+        </div>
+    </header>
+
+    <script type="text/javascript" src="../js/otherfunction_en.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <main>
+        <div id="marginTop"></div>
+
+        <div id="breadCrumb">
+            <div id="breadCrumb-container">
+                <span class="breadcrumbs_item"><a href="index.html" alt="Home" name="home">Home</a></span>
+                <span class="breadcrumbs_item"><a href="census_results.html" name="census">Census Results</a></span>
+                <label name="pagetitle"><span tabindex='0'>District Profiles</span></label>
+            </div>
+        </div>
+
+
+        <div id="container">
+            <div id="PageTitle">
+                <div class='row'>
+                    <h1 class="page_title col-8 col-md-10 font-size" name="pagetitle">
+                        District Profiles
+                    </h1>
+
+
+
+                    <div class="info_btn col-4 col-md-2" style='text-align:right;'>
+                       	
+                        <button type="button" class="btn btn-link" id="dropdown_btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img id="info_btn" src="../img/info_btn.svg" alt="Definition of Terms" width="26" height="26">
+                        </button>
+						<div class="dropdown-menu dropdown-menu-right">
+                            <a href="terms_and_definitions.html">
+                                <button class="dropdown-item" type="button" name="terms">Definition of Terms</button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <section id="section04">
+            <div class="main-container-index">
+			   	<p class='district_profiles_intro' name="district_profiles_intro">
+                   Please zoom in / out and click on the map to select an area, or choose the name of the area.
+				   The statistical tables for the selected area will be displayed below the map.
+                </p>
+                <div class="DPContent">
+                    <div id="DPtabs" class="d-lg-block">
+                        <ul class="row g-0 align-items-end DPtabs-fix">
+                            <li class="col tab_selected" style="display:none" id="DC18tab" data-mapType="DCD">
+                                <a href="#DC18-tab" onclick=div_click(this) name="District Council Districts">
+                                    District Council<br>
+                                    Districts
+                                </a>
+                            </li>
+
+                            <li class="col tab" style="display:none" id="DCCAtab" data-mapType="DCCA">
+                                <a href="#DCCA-tab" onclick=div_click(this) name="District Council Constituency Areas">
+                                    District Council<br>
+                                    Constituency Areas
+                                </a>
+                            </li>
+
+                            <li class="col tab" style="display:none" id="LTPUGtab" data-mapType="TPU">
+                                <a href="#LTPUG-tab" onclick=div_click(this) name="Tertiary Planning Units">
+                                    Tertiary<br>
+                                    Planning Units
+                                </a>
+                            </li>
+
+                            <li class="col tab" style="display:none" id="SBtab" data-mapType="SB">
+                                <a href="#SB-tab" onclick=div_click(this) name="Subunits">
+                                    Subunits<br>
+                                    &nbsp;
+                                </a>
+                            </li>
+
+                            <li class="col tab" style="display:none" id="NTtab" data-mapType="NT">
+                                <a href="#NT-tab" onclick=div_click(this) name="New Towns">
+                                    New Towns<br>
+                                    &nbsp;
+                                </a>
+                            </li>
+
+                            <li class="col tab" style="display:none" id="ESTATEtab" data-mapType="MHE">
+                                <a href="#ESTATE-tab" onclick=div_click(this) name="Major Housing Estates">
+                                    Major Housing<br>
+                                    Estates
+                                </a>
+                            </li>
+                        </ul>
+
+                        <script>
+                            $(function () {
+				                        $('button.dropdown-text').val(false);
+	                              $('button.dropdown-note').val(false);
+                                $("#DPtabs").tabs({
+                                    activate: function () {
+                                        DeleteAllText();
+                                        var active = $('#DPtabs').tabs('option', 'active');
+                                        var val;
+
+                                        showAll();
+
+										document.getElementById("CurrentDPSub").value=getCB(1);
+                                        if (active == 0) {
+                                            val = "DCD";
+                                        } else if (active == 1) {
+                                            val = "DCCA";
+                                        } else if (active == 2) {
+                                            val = "TPU";
+                                        } else if (active == 3) {
+                                            val = "SB";
+                                        } else if (active == 4) {
+                                            val = "NT";
+                                        } else if (active == 5) {
+                                            val = "MHE";
+                                            $("li:has(#Characteristicstabbox6),#MobileCharacteristicstabbox6").removeClass('showMe').addClass('hideMe');
+                                        } else if (active == 6) {
+                                            val = "IM";
+                                        }
+
+                                        $("#dp-category-0").val(val);
+
+                                        var id = $("#DPtabs div>div div input").eq(active).attr("id");
+
+                                        //changeselectedtabsid("DPtabs");
+                                        $("#DPtabs li").removeClass("tab_selected").addClass("tab");
+                                        $("#DPtabs .ui-tabs-active").removeClass("tab").addClass("tab_selected");
+                                        $('#Characteristicstabs').tabs('option', 'active', 0);
+
+										var charActive = $('#Characteristicstabs').tabs('option', 'active');
+
+										var selectedCharacteristics = $("#Characteristicstabs ul>li a").eq(active).attr("id").replace("Characteristicstabbox", "");
+										//var val = $("#dp-category-0").val();
+
+										//console.log('**DPtabs change');
+
+										/*console.log(active);
+										console.log(selectedCharacteristics);
+										console.log(charActive);*/
+
+                                        document.getElementById("defaultSelectedMap").value = id.replace('dp_resetMapButton-', '');
+
+                                        resetMap(val + 1);
+                                    }
+                                });
+                            });
+
+                            function onDPcategory0change() {
+                                
+                                showAll();
+
+                                var val = $("#dp-category-0").val();
+                                var active;
+
+                                if (val == "DCD") {
+                                    active = 0;
+                                } else if (val == "DCCA") {
+                                    active = 1;
+                                } else if (val == "TPU") {
+                                    active = 2;
+                                } else if (val == "SB") {
+                                    active = 3;
+                                } else if (val == "NT") {
+                                    active = 4;
+                                }else if (val == 'MHE') {
+                                    active = 5;
+                                    $("li:has(#Characteristicstabbox6),#MobileCharacteristicstabbox6").removeClass('showMe').addClass('hideMe');
+                                } else if (val == "IM") {
+                                    active = 6;
+                                }
+
+                                $('#DPtabs').tabs('option', 'active', active);
+								//console.log('**onDPcategory0change');
+
+                            }
+                        </script>
+
+                        <div class="dp_mobile px-3 DPTab-content" style="margin:0">
+                            <div id="map_selection" class="row mb-2 g-2 pt-2">
+                                <span class="dp-category-label" name="SelectMapLabel">District Profiles</span>
+
+                                <div class="col-11 col-md-6">
+                                    <select id="dp-category-0" class="dp-eng-select" onchange="onDPcategory0change()">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="map_selection" class="row mb-2 g-2 pt-2" style="display:none">
+                                <span class="dp-category-label" id="SelectedMapTitle">Region / District Council District</span>
+                                <!--<div class="col-12" id="dp-categorizing-Mobile"><select id="Mobile-dp-category-TERRITORIES" class="dp-eng-select" onchange="selectDCForMobile(this.id)"></select></div>-->
+                            </div>
+                        </div>
+
+                        <div id="DC18-tab" class="DPTab-content px-3" style="display:none">
+                            <div id='region_select_container' class="row no-gutters select_container mb-2 g-2 pt-2">
+                                <label id="dp-category-label-TERRITORIES"  for="dp-category-TERRITORIES" class="dp-category-label" name="DC18MAP">Region / District Council District</label>
+
+                                <div class="col-11 col-md-6">
+                                    <div class="row no-gutters label-div" id="Region">
+                                        <div id="dp-categorizing" class="categorizing"><select id="dp-category-DCD1" class="dp-eng-select" onchange="selectDC(this.id)"></select></div>
+                                        <p></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-3"><input type="button" id="dp_resetMapButton-DCD1" class="resetMapButton" value="Reset" onclick="resetMap(this.id);"></div>
+
+                                <div class="col hidMapControl">
+                                    <a href="javascript:void(0)" id="hidMapControlLabel">
+                                        <div class="tab_hide_map">
+                                            <label name="HideMapLabel">Hide Map</label>
+                                            <img src="../icon_set/arrow_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="Hide Map" width="14" height="8">
+                                        </div>
+
+                                        <div class="tab_show_map" style="display:none">
+                                            <label name="ShowMapLabel">Show Map</label>
+                                            <img src="../icon_set/arrow_down_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="Show Map" width="14" height="8">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="DCCA-tab" class="DPTab-content px-3" style="display:none">
+                            <div id='region_select_container' class="row no-gutters select_container mb-2 g-2 pt-2">
+                                <label id="dp-category-label-DC" for="dp-category-DC" class="dp-category-label" name="DCCAMAP" aria-label="Region / District Council District">District Council Constituency Area</label>
+
+                                <div class="col-11 col-md-6">
+                                    <div class="row no-gutters label-div" id="Region">
+                                        <div id="dp-categorizing" class="categorizing">
+                                            <select id="dp-category-DCCA1" class="dp-eng-select" onchange="catDCCA();mheChnage(this);"></select>
+                                            <p></p>
+                                            <select id="dp-category-DCCA2" class="dp-eng-select" onchange="selectDC(this.id);mheChnage(this);"></select>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3"><input type="button" id="dp_resetMapButton-DCCA1" class="resetMapButton" value="Reset" onclick="resetMap(this.id);$('.mt-4').hide();"></div>
+
+                                <div class="hidMapControl col">
+                                    <a href="javascript:void(0)" id="hidMapControlLabel">
+                                        <div class="tab_hide_map">
+                                            <label name="HideMapLabel">Hide Map</label>
+                                            <img src="../icon_set/arrow_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                        </div>
+
+                                        <div class="tab_show_map" style="display:none">
+                                            <label name="ShowMapLabel">Show Map</label>
+                                            <img src="../icon_set/arrow_down_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="LTPUG-tab" class="DPTab-content px-3" style="display:none">
+                            <div id='region_select_container' class="row no-gutters select_container mb-2 g-2 pt-2">
+                                <label id="dp-category-label-LTPU" for="dp-category-LTPU" class="dp-category-label" name="TPUMap" aria-label="Tertiary Planning Unit">Tertiary Planning Unit</label>
+
+                                <div class="col-11 col-md-6">
+                                    <div class="row no-gutters label-div" id="Region">
+                                        <div id="dp-categorizing" class="categorizing"><select id="dp-category-TPU1" class="dp-eng-select" onchange="selectDC(this.id)"></select></div>
+                                        <p></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-3"><input type="button" id="dp_resetMapButton-TPU1" class="resetMapButton" value="Reset" onclick="resetMap(this.id);"></div>
+
+                                <div class="col hidMapControl">
+                                    <a href="javascript:void(0)" id="hidMapControlLabel">
+                                        <div class="tab_hide_map">
+                                            <label name="HideMapLabel">Hide Map</label>
+                                            <img src="../icon_set/arrow_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                        </div>
+
+                                        <div class="tab_show_map" style="display:none">
+                                            <label name="ShowMapLabel">Show Map</label>
+                                            <img src="../icon_set/arrow_down_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="SB-tab" class="DPTab-content px-3" style="display:none">
+                            <div id='region_select_container' class="row no-gutters select_container mb-2 g-2 pt-2">
+                                <label id="dp-category-label-SB" for="dp-category-SB1" class="dp-category-label" aria-label="Subunit">Subunit</label>
+
+                                <div class="col-11 col-md-6">
+                                    <div class="row no-gutters label-div" id="Region">
+                                        <div id="dp-categorizing" class="categorizing">
+                                            <select id="dp-list-SB1" class="dp-eng-select" onchange="catSB()"></select>
+                                            <p></p>
+                                            <select id="dp-list-SB2" class="dp-eng-select" onchange="selectSB()"></select>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3"><input type="button" id="dp_resetMapButton-SB1" class="resetMapButton" value="Reset" onclick="resetMap(this.id);"></div>
+
+                                <div class="col hidMapControl">
+                                    <a href="javascript:void(0)" id="hidMapControlLabel">
+                                        <div class="tab_hide_map">
+                                            <label name="HideMapLabel">Hide Map</label>
+                                            <img src="../icon_set/arrow_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                        </div>
+
+                                        <div class="tab_show_map" style="display:none">
+                                            <label name="ShowMapLabel">Show Map</label>
+                                            <img src="../icon_set/arrow_down_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="NT-tab" class="DPTab-content px-3" style="display:none">
+                            <div id='region_select_container' class="row no-gutters select_container mb-2 g-2 pt-2">
+                                <label id="dp-category-label-NEW_TOWN" for="dp-category-NEW_TOWN" class="dp-category-label" name="NTMap" aria-label="New Town">New Town</label>
+
+                                <div class="col-11 col-md-6">
+                                    <div class="row no-gutters label-div" id="Region">
+                                        <div id="dp-categorizing" class="categorizing"><select id="dp-category-NT1" class="dp-eng-select" onchange="selectDC(this.id);mheChnage(this);"></select></div>
+                                        <p></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-3"><input type="button" id="dp_resetMapButton-NT1" class="resetMapButton" value="Reset" onclick="resetMap(this.id);$('.mt-4').hide();"></div>
+
+                                <div class="col hidMapControl">
+                                    <a href="javascript:void(0)" id="hidMapControlLabel">
+                                        <div class="tab_hide_map">
+                                            <label name="HideMapLabel">Hide Map</label>
+                                            <img src="../icon_set/arrow_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                        </div>
+
+                                        <div class="tab_show_map" style="display:none">
+                                            <label name="ShowMapLabel">Show Map</label>
+                                            <img src="../icon_set/arrow_down_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="ESTATE-tab" class="DPTab-content px-3" style="display:none">
+                            <div id='region_select_container' class="row no-gutters select_container mb-2 g-2 pt-2">
+                                <label id="dp-category-label-MAJOR_HOUSING_ESTATE" for="dp-category-MAJOR_HOUSING_ESTATE" class="dp-category-label" name="MHEMap" aria-label="Major Housing Estate">Major Housing Estate</label>
+
+                                <!--<div class="col-11 col-md-6">-->
+								<div class="col-8 col-md-6">
+                                    <div class="row no-gutters label-div" id="Region">
+                                        <div id="dp-categorizing" class="categorizing">
+                                            <!--<select id="dp-category-MHE1" class="dp-eng-select" onchange="catMHE()"></select>-->
+											 <select id="dp-category-MHE1" class="dp-eng-select" onchange="catMHE();$('.mt-4').hide();"></select>
+                                            <p></p>
+												<!--<input type="search" id="dp-category-MHE3" placeholder="Enter Search Keyword(s)" class="dp-eng-search"  autocomplete="off" >-->
+											<div class="buttonIn">
+												<input type="text" id="dp-category-MHE3" placeholder="Enter Estate Name to search" class="dp-eng-search"  autocomplete="off" onkeypress="CheckEnterinput(event);">
+												<button id="clear">x</button>
+											</div>
+												 <div id="search-text" ></div>
+											<p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-3">--><div class="col-1"><input type="button" id="dp_resetMapButton-MHE1" class="resetMapButton" value="Reset" onclick="resetMap(this.id);$('.mt-4').hide();"><p></p><input type="button" id="dp_searchMapButton-MHE1" class="searchMapButton" value="Search" onclick="searchDC();"></div>
+                                <div class="col-20 d-inline-flex">
+                                    <select id="dp-category-MHE2" class="dp-eng-select" style="width:50%" onchange="if(this.value !== ''){selectDC(this.id);};mheChnage(this);"></select>
+                                    <div class="col hidMapControl" style="margin-top: 0px">
+                                        <a href="javascript:void(0)" id="hidMapControlLabel">
+                                            <div class="tab_hide_map">
+                                                <label name="HideMapLabel">Hide Map</label>
+                                                <img src="../icon_set/arrow_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                            </div>
+    
+                                            <div class="tab_show_map" style="display:none">
+                                                <label name="ShowMapLabel">Show Map</label>
+                                                <img src="../icon_set/arrow_down_light.svg" style="transform: translateY(-2px);margin-left:8px;" alt="" width="14" height="8">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="map" class="map non-printable" style="background-color:#ccedff"></div>
+
+                    <!--<div class="dp_mobile btn_hide_map">
+                        <button class="table_button btn-dark shown_map" style="display:none">
+                            <img src="../icon_set/show_map.svg" style="transform: translateY(-2px);margin-right:8px;" alt="" width="15" height="15">
+                            <label name="ShowMapLabel">Show Map</label>
+                        </button>
+
+                        <button class="table_button btn-dark hide_map" style="">
+                            <img src="../icon_set/hide_map.svg" style="transform: translateY(-2px);margin-right:8px;" alt="" width="15" height="15">
+                            <label name="HideMapLabel">Hide Map</label>
+                        </button>
+                    </div>-->
+
+                    <div class="mt-4">
+                        <div id="Characteristicstabs" class="d-none d-lg-block">
+                            <ul id="tabsDetails" class="row g-0 align-items-end">
+                                <li class="col tab_selected">
+								<a href="#Characteristics-tab1" id="Characteristicstabbox1" onclick=sub_click(this) name=""></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab2" id="Characteristicstabbox2" onclick=sub_click(this) name=""></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab3" id="Characteristicstabbox3" onclick=sub_click(this) name=""></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab4" id="Characteristicstabbox4" onclick=sub_click(this) name=""></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab5" id="Characteristicstabbox5" onclick=sub_click(this) name=""></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab6" id="Characteristicstabbox6" onclick=sub_click(this) name=""></a>
+								</li>
+                            </ul>
+							<!--
+                            <ul id="tabsDetails" class="row g-0 align-items-end">
+                                <li class="col tab_selected">
+								<a href="#Characteristics-tab1" id="Characteristicstabbox1" onclick=sub_click(this) name="Demographic Characteristics"></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab2" id="Characteristicstabbox2" onclick=sub_click(this) name="Educational Characteristics"></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab3" id="Characteristicstabbox3" onclick=sub_click(this) name="Economic Characteristics"></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab4" id="Characteristicstabbox4" onclick=sub_click(this) name="Household Characteristics"></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab5" id="Characteristicstabbox5" onclick=sub_click(this) name="Housing Characteristics"></a>
+								</li>
+                                <li class="col tab">
+								<a href="#Characteristics-tab6" id="Characteristicstabbox6" onclick=sub_click(this) name="Internal Migration Characteristics"></a>
+								</li>
+                            </ul>
+							-->
+                            <div id="Characteristics-tab1" style="display:none"></div>
+                            <div id="Characteristics-tab2" style="display:none"></div>
+                            <div id="Characteristics-tab3" style="display:none"></div>
+                            <div id="Characteristics-tab4" style="display:none"></div>
+                            <div id="Characteristics-tab5" style="display:none"></div>
+                            <div id="Characteristics-tab6" style="display:none"></div>
+                        </div>
+
+                        <div class="dp_mobile" id="demographics_characteristics">
+                            <div class="px-3 DPTab-content">
+                                <div class="col-12 pt-2 pb-2">
+                                    <select id="dp-select-Characteristics" class="dp-eng-select" onchange="SelectCharacteristicsForMobile()">
+                                        <option value="1" id="MobileCharacteristicstabbox1"></option>
+                                        <option value="2" id="MobileCharacteristicstabbox2"></option>
+                                        <option value="3" id="MobileCharacteristicstabbox3"></option>
+                                        <option value="4" id="MobileCharacteristicstabbox4"></option>
+                                        <option value="5" id="MobileCharacteristicstabbox5"></option>
+                                        <option value="6" id="MobileCharacteristicstabbox6"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-3 pt-3 pb-3 table_content">
+                            <div id="Characteristics-tablediv1" style="display:none">
+                                <div class="CharacteristicHeader">
+                                    <div class="function_button">
+                                        <button type="button" class="dropdown_button table_button btn-dark" data-toggle="dropdown">
+                                            <img src="../icon_set/download_btn_light.svg" class="web_table_icon DP_DownLoad_icon" alt="Download" />
+                                            <label name="DownloadLabel">Download</label>
+                                            <img alt="Download" class="DPDownloadarrow" src="../icon_set/arrow_down_light.svg">
+                                        </button>
+
+                                        <div class="dropdown-menu dropdown-menu-right" style="padding:0; margin:0;">
+                                            <div class="border-bottom pb-1" id="downloadProfiles">
+                                                <label id="DownloadTab1" class="px-3 download_section_text"></label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel" style="display:inline" title="Download Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml" style="display:inline" title="Download XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="border-bottom pb-1" id="downloadAll">
+                                                <label class="px-3 download_section_text" name="DownloadAllLabel">Download All Tables</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel_all_tables" style="display:inline" title="Download All Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml_all_tables" style="display:inline" title="Download All XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+													
+                                                  </div>
+                                            </div>
+											
+									        <div class="border-bottom pb-1" name="GMLModules">
+                                                <label class="px-3 download_section_text" name="DownloadGMLLabel">Download Spatial Dataset</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="gml" style="display:inline" title="Download Spatial Dataset">
+                                                        <img src="../icon_set/download_gml.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">GML&nbsp;&nbsp;</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <span  class="Characteristics_title" id="Characteristics_title1"></span>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="TablePanel1"><table id="default_table" style="border: solid 1px #D1D1D1;"><tbody></tbody></table></div>
+                            </div>
+
+                            <div id="Characteristics-tablediv2" style="display:none">
+                                <div class="CharacteristicHeader">
+                                    <div class="function_button">
+                                        <button type="button" class="dropdown_button table_button btn-dark" data-toggle="dropdown">
+                                            <img src="../icon_set/download_btn_light.svg" class="web_table_icon DP_DownLoad_icon" alt="Download" />
+                                            <label name="DownloadLabel">Download</label>
+                                            <img alt="Download" class="DPDownloadarrow" src="../icon_set/arrow_down_light.svg">
+                                        </button>
+
+                                        <div class="dropdown-menu dropdown-menu-right" style="padding:0; margin:0;">
+                                            <div class="border-bottom pb-1">
+                                                <label id="DownloadTab2" class="px-3 download_section_text"></label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel" style="display:inline" title="Download Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml" style="display:inline" title="Download XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-bottom pb-1">
+                                                <label class="px-3 download_section_text" name="DownloadAllLabel">Download All Tables</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel_all_tables" style="display:inline" title="Download All Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml_all_tables" style="display:inline" title="Download All XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+							                <div class="border-bottom pb-1" name="GMLModules">
+                                                <label class="px-3 download_section_text" name="DownloadGMLLabel">Download Spatial Dataset</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="gml" style="display:inline" title="Download Spatial Dataset">
+                                                        <img src="../icon_set/download_gml.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">GML&nbsp;&nbsp;</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="Characteristics_title" id="Characteristics_title2"></span>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="TablePanel2"><table id="default_table" style="border: solid 1px #D1D1D1;"><tbody></tbody></table></div>
+                            </div>
+
+                            <div id="Characteristics-tablediv3" style="display:none">
+                                <div class="CharacteristicHeader">
+                                    <div class="function_button">
+                                        <button type="button" class="dropdown_button table_button btn-dark" data-toggle="dropdown">
+                                            <img src="../icon_set/download_btn_light.svg" class="web_table_icon DP_DownLoad_icon" alt="Download" />
+                                            <label name="DownloadLabel">Download</label>
+                                            <img alt="Download" class="DPDownloadarrow" src="../icon_set/arrow_down_light.svg">
+                                        </button>
+
+                                        <div class="dropdown-menu dropdown-menu-right" style="padding:0; margin:0;">
+                                            <div class="border-bottom pb-1">
+                                                <label id="DownloadTab3" class="px-3 download_section_text"></label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel" style="display:inline" title="Download  Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml" style="display:inline" title="Download XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-bottom pb-1">
+                                                <label class="px-3 download_section_text" name="DownloadAllLabel">Download All Tables</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel_all_tables" style="display:inline" title="Download All Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml_all_tables" style="display:inline" title="Download All XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+	
+                                            </div>
+											<div class="border-bottom pb-1" name="GMLModules">
+                                                <label class="px-3 download_section_text" name="DownloadGMLLabel">Download Spatial Dataset</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="gml" style="display:inline" title="Download Spatial Dataset">
+                                                        <img src="../icon_set/download_gml.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">GML&nbsp;&nbsp;</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="Characteristics_title" id="Characteristics_title3"></span>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="TablePanel3"><table id="default_table" style="border: solid 1px #D1D1D1;"><tbody></tbody></table></div>
+                            </div>
+
+                            <div id="Characteristics-tablediv4" style="display:none">
+                                <div class="CharacteristicHeader">
+                                    <div class="function_button">
+                                        <button type="button" class="dropdown_button table_button btn-dark" data-toggle="dropdown">
+                                            <img src="../icon_set/download_btn_light.svg" class="web_table_icon DP_DownLoad_icon" alt="Download" />
+                                            <label name="DownloadLabel">Download</label>
+                                            <img alt="Download" class="DPDownloadarrow" src="../icon_set/arrow_down_light.svg">
+                                        </button>
+
+                                        <div class="dropdown-menu dropdown-menu-right" style="padding:0; margin:0;">
+                                            <div class="border-bottom pb-1">
+                                                <label id="DownloadTab4" class="px-3 download_section_text"></label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel" style="display:inline" title="Download Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml" style="display:inline" title="Download XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-bottom pb-1">
+                                                <label class="px-3 download_section_text" name="DownloadAllLabel">Download All Tables</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel_all_tables" style="display:inline" title="Download All Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml_all_tables" style="display:inline" title="Download All XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+										    <div class="border-bottom pb-1" name="GMLModules">
+                                                <label class="px-3 download_section_text" name="DownloadGMLLabel">Download Spatial Dataset</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="gml" style="display:inline" title="Download Spatial Dataset">
+                                                        <img src="../icon_set/download_gml.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">GML&nbsp;&nbsp;</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="Characteristics_title" id="Characteristics_title4"></span>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="TablePanel4"><table id="default_table" style="border: solid 1px #D1D1D1;"><tbody></tbody></table></div>
+                            </div>
+
+                            <div id="Characteristics-tablediv5" style="display:none">
+                                <div class="CharacteristicHeader">
+                                    <div class="function_button">
+                                        <button type="button" class="dropdown_button table_button btn-dark" data-toggle="dropdown">
+                                            <img src="../icon_set/download_btn_light.svg" class="web_table_icon DP_DownLoad_icon" alt="Download" />
+                                            <label name="DownloadLabel">Download</label>
+                                            <img alt="Download" class="DPDownloadarrow" src="../icon_set/arrow_down_light.svg">
+                                        </button>
+
+                                        <div class="dropdown-menu dropdown-menu-right" style="padding:0; margin:0;">
+                                            <div class="border-bottom pb-1">
+                                                <label id="DownloadTab5" class="px-3 download_section_text"></label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel" style="display:inline" title="Download Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml" style="display:inline" title="Download XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-bottom pb-1">
+                                                <label class="px-3 download_section_text" name="DownloadAllLabel">Download All Tables</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel_all_tables" style="display:inline" title="Download All Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml_all_tables" style="display:inline" title="Download All XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+								             <div class="border-bottom pb-1" name="GMLModules">
+                                                <label class="px-3 download_section_text" name="DownloadGMLLabel">Download Spatial Dataset</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="gml" style="display:inline" title="Download Spatial Dataset">
+                                                        <img src="../icon_set/download_gml.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">GML&nbsp;&nbsp;</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="Characteristics_title" id="Characteristics_title5"></span>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="TablePanel5"><table id="default_table" style="border: solid 1px #D1D1D1;"><tbody></tbody></table></div>
+                            </div>
+
+                            <div id="Characteristics-tablediv6" style="display:none">
+                                <div class="CharacteristicHeader">
+                                    <div class="function_button">
+                                        <button type="button" class="dropdown_button table_button btn-dark" data-toggle="dropdown">
+                                            <img src="../icon_set/download_btn_light.svg" class="web_table_icon DP_DownLoad_icon" alt="Download" />
+                                            <label name="DownloadLabel">Download</label>
+                                            <img alt="Download" class="DPDownloadarrow" src="../icon_set/arrow_down_light.svg">
+                                        </button>
+
+                                        <div class="dropdown-menu dropdown-menu-right" style="padding:0; margin:0;">
+                                            <div class="border-bottom pb-1">
+                                                <label id="DownloadTab6" class="px-3 download_section_text"></label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel" style="display:inline" title="Download Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml" style="display:inline" title="Download XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-bottom pb-1">
+                                                <label class="px-3 download_section_text" name="DownloadAllLabel">Download All Tables</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="excel_all_tables" style="display:inline" title="Download All Excel">
+                                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;</span>
+                                                    </div>
+
+                                                    <div class="xml_all_tables" style="display:inline" title="Download All XML">
+                                                        <img src="../icon_set/download_xlm.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">XML</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="border-bottom pb-1" name="GMLModules">
+                                                <label class="px-3 download_section_text" name="DownloadGMLLabel">Download Spatial Dataset</label>
+
+                                                <div class="px-3 pb-2">
+                                                    <div class="gml" style="display:inline" title="Download Spatial Dataset">
+                                                        <img src="../icon_set/download_gml.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">GML&nbsp;&nbsp;</span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="Characteristics_title" id="Characteristics_title6"></span>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div id="TablePanel6"><table id="default_table" style="border: solid 1px #D1D1D1;"><tbody></tbody></table></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="download_sections DCD">
+
+                        <div tabindex="0" id="TextC">
+                            <p>
+                                Besides, to grasp the main characteristics of the population living in individual areas, you are welcome to download the key statistics by District Council District for the year of 2021 listed below.
+                            </p>
+                            <p>
+                                In addition, the Census and Statistics Department (C&SD) collaborated with Centamap Company Limited (Centamap) to release the statistics of the 2021 Population Census using the Geographical Information System. Users are welcome to download the statistics by Housing Market Area and Building Group for the year of 2021 listed below. These statistics were also released on the websites of Centamap (<a href='https://census.centamap.com'>census.centamap.com</a> and <a href='http://hk.centamap.com'>hk.centamap.com</a>) and the Centamap mobile application.
+                            </p>
+                        </div>
+                        
+                        <div class="download_section_background_1 px-3">
+                            <div class="row align-items-center">
+                                <div class="col-4"><span class="download_section_title" name="StatisticalTableTitle">Title of Statistical Table</span></div>
+                                <div class="col"><span class="download_section_title" name="21CTitle">2021 Population Census</span></div>
+                            </div>
+                        </div>
+
+                        <div class="download_section_background_3 px-3 border-bottom">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <span class="download_section_text" name="DCTableTitle">Statistics by District Council District</span>
+                                </div>
+                                <div class="col">
+                                    <a class="statistics_excel" href="../doc/DC_21C.xlsx">
+                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </a>
+
+                                    <a class="statistics_csv" href="../doc/DC_21C.zip">
+                                        <img src="../icon_set/download_csv.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">CSV</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="download_section_background_2 px-3 border-bottom">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <span class="download_section_text" name="DCTableTitle2">Statistics by Housing Market Area and Building Group</span>
+                                </div>
+                                <div class="col">
+                                    <a class="statistics_excel" href="../doc/HMA_BG_21C.xlsx">
+                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </a>
+
+                                    <a class="statistics_csv" href="../doc/HMA_BG_21C.zip">
+                                        <img src="../icon_set/download_csv.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">CSV</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="download_sections DCCA">
+
+                        <div tabindex="0" id="TextC">
+                            <p>
+                                Besides, to grasp the main characteristics of the population living in individual areas, you are welcome to download the key statistics by District Council Constituency Area for the year of 2021 listed below.
+                            </p>
+                        </div>
+
+                        <div class="download_section_background_1 px-3">
+                            <div class="row align-items-center">
+                                <div class="col-4"><span class="download_section_title" name="StatisticalTableTitle">Title of Statistical Table</span></div>
+                                <div class="col"><span class="download_section_title" name="21CTitle">2021 Population Census</span></div>
+                            </div>
+                        </div>
+
+                        <div class="download_section_background_3 px-3 mb-4 border-bottom">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <span class="download_section_text" name="DCCATableTitle">Statistics by District Council Constituency Area</span>
+                                </div>
+
+                                <div class="col">
+                                    <a class="statistics_excel" href="../doc/DCCA_21C.xlsx">
+                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </a>
+                                    <a class="statistics_csv" href="../doc/DCCA_21C.zip">
+                                        <img src="../icon_set/download_csv.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">CSV</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="download_sections TPU">
+
+                        <div tabindex="0" id="TextC">
+                            <p>
+                                Besides, to grasp the main characteristics of the population living in individual areas, you are welcome to download the key statistics by Large / Small Tertiary Planning Unit Group for the year of 2021 listed below.
+                            </p>
+                        </div>
+
+                        <div class="download_section_background_1 px-3">
+                            <div class="row align-items-center">
+                                <div class="col-4"><span class="download_section_title" name="StatisticalTableTitle">Title of Statistical Table</span></div>
+                                <div class="col"><span class="download_section_title" name="21CTitle">2021 Population Census</span></div>
+                            </div>
+                        </div>
+
+                        <div class="download_section_background_3 px-3 border-bottom">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <span class="download_section_text" name="LTPUTitle">Statistics by Large Tertiary Planning Unit Group</span>
+                                </div>
+
+                                <div class="col">
+                                    <a class="statistics_excel" href="../doc/LTPUG_21C.xlsx">
+                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </a>
+
+                                    <a class="statistics_csv" href="../doc/LTPUG_21C.zip">
+                                        <img src="../icon_set/download_csv.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">CSV</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="download_section_background_2 px-3 mb-4 border-bottom">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <span class="download_section_text" name="STPUTitle">Statistics by Small Tertiary Planning Unit Group</span>
+                                </div>
+
+                                <div class="col">
+                                    <a class="statistics_excel" href="../doc/STPUG_21C.xlsx">
+                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </a>
+
+                                    <a class="statistics_csv" href="../doc/STPUG_21C.zip">
+                                        <img src="../icon_set/download_csv.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">CSV</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="download_sections SBU">
+
+                        <div tabindex="0" id="TextC">
+                            <p>
+                                Besides, to grasp the main characteristics of the population living in individual areas, you are welcome to download the key statistics by Large / Small Subunit Group for the year of 2021 listed below.
+                            </p>
+                        </div>
+
+                        <div class="download_section_background_1 px-3">
+                            <div class="row align-items-center">
+                                <div class="col-4"><span class="download_section_title" name="StatisticalTableTitle">Title of Statistical Table</span></div>
+                                <div class="col"><span class="download_section_title" name="21CTitle">2021 Population Census</span></div>
+                            </div>
+                        </div>
+
+                        <div class="download_section_background_3 px-3 border-bottom">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <span class="download_section_text" name="LSBGTitle">Statistics by Large Subunit Group</span>
+                                </div>
+
+                                <div class="col">
+                                    <a class="statistics_excel" href="../doc/LSUG_21C.xlsx">
+                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </a>
+
+                                    <a class="statistics_csv" href="../doc/LSUG_21C.zip">
+                                        <img src="../icon_set/download_csv.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">CSV</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="download_section_background_2 px-3 mb-4 border-bottom">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <span class="download_section_text" name="SSBGTitle">Statistics by Small Subunit Group</span>
+                                </div>
+
+                                <div class="col">
+                                    <a class="statistics_excel" href="../doc/SSUG_21C.xlsx">
+                                        <img src="../icon_set/download_excel.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">Excel&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </a>
+
+                                    <a class="statistics_csv" href="../doc/SSUG_21C.zip">
+                                        <img src="../icon_set/download_csv.svg" style="transform: translateY(-2px);margin-right:4px;" alt="" width="16" height="20"><span class="download_section_text">CSV</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script src="../scripts/demographics_mig.js"></script>
+
+                    <script>
+                        var default_demographics_lookup_path = [];
+
+                        default_color_sv_sp = {
+                            sv: 'RP',
+                            sp: 'RP_NPER'
+                        };
+                    </script>
+
+                    <input type="hidden" id="hidTableID" value="" />
+                    <input type="hidden" id="hidGEOGType" value="" />
+                    <input type="hidden" id="hidCurrentCate" value="" />
+                    <input type="hidden" id="hidselectdc" value="" />
+                    <input type="hidden" id="defaultCategory" value="W" />
+                    <input type="hidden" id="defatltCharacteristics" value="1" />
+                    <input type="hidden" id="defaultSelectedMap" value="TERRITORIES" />
+					<input type="hidden" id="PrevDPMain" value="" />
+                    <input type="hidden" id="CurrentDPMain" value="" />
+                    <input type="hidden" id="CurrentDPSub" value="" />
+                </div>
+            </div>
+        </section>
+
+        <script type="text/javascript">back();</script>
+    </main>
+
+    <footer>
+        <div id="footer">
+            <script type="text/javascript">footer();</script>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="/js/bootstrap/5.3.1/bootstrap.bundle.min.js"></script>
+    <script src="../res/district_profile.js"></script>
+    <script src="../res/res.js"></script>
+	<!--<script type="text/javascript" src="../js/AutoDownload_district_profiles.js"></script>-->
+    <script>
+
+		document.getElementById("PrevDPMain").value=getDP(1);
+		document.getElementById("CurrentDPMain").value=getDP(1);
+		document.getElementById("CurrentDPSub").value=getCB(1);
+
+		document.getElementById("Characteristicstabbox1").name=getCB(1);
+		document.getElementById("Characteristicstabbox2").name=getCB(2);
+		document.getElementById("Characteristicstabbox3").name=getCB(3);
+		document.getElementById("Characteristicstabbox4").name=getCB(4);
+		document.getElementById("Characteristicstabbox5").name=getCB(5);
+		document.getElementById("Characteristicstabbox6").name=getCB(6);
+
+		document.getElementById("DC18-tab").name=getDP(1);
+		document.getElementById("DCCA-tab").name=getDP(2);
+		document.getElementById("LTPUG-tab").name=getDP(3);
+		document.getElementById("SB-tab").name=getDP(4);
+		document.getElementById("NT-tab").name=getDP(5);
+		document.getElementById("ESTATE-tab").name=getDP(6);
+
+        $('.DCD').show();
+        $('.DCCA').hide();
+        $('.TPU').hide();
+        $('.SBU').hide();
+
+        LoadDPTableList();
+    </script>
+	    <script>
+    window.addEventListener('load', () => {
+        const button = document.querySelector('#clear');
+        button.addEventListener('click', () => {
+           // document.querySelector('#dp-category-MHE3').value = "";
+           //resetMap("dp_resetMapButton-MHE1");
+		   ClearMHE();
+        });
+    });
+    
+    var reloadSelectDCTimer = setInterval(function() {
+        var tab = $("#Characteristicstabs").find(".tab_selected").index();
+        //console.log(tab);
+        if(tab === 0){
+            if($("#TablePanel1").text().trim() === ""){
+                console.log("reloading method selectDC");
+                selectDC('dp-category-DCD1');
+            }else{
+                console.log("reloaded method selectDC");
+                clearInterval(reloadSelectDCTimer);
+            }
+        }else{
+            console.log("default to tab 1.");
+            $("#Characteristicstabbox1").click();
+        }
+		$('li[tabindex="-1"]').each(function() {
+			$(this).attr('tabindex', '0');
+			});
+    }, 2500);
+
+var interval = 400;
+var timer = window.setInterval(function(){
+    var empt = document.getElementById("dp-category-MHE3").value;
+	if(empt == ""){
+	 $('#clear').css('display', 'none');
+    }else{
+	 $('#clear').css('display', 'block');
+	}
+    }, interval);
+   </script>
+</body>
+</html>

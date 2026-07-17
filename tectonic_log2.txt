@@ -1,0 +1,31 @@
+note: Running TeX ...
+note: downloading natbib.sty
+note: downloading lmroman10-bolditalic.otf
+note: downloading lmroman9-regular.otf
+note: downloading cmr9.tfm
+note: downloading cmmi9.tfm
+note: downloading cmsy9.tfm
+note: downloading cmex9.tfm
+note: downloading lmroman6-regular.otf
+note: downloading lmroman8-regular.otf
+note: Rerunning TeX because "care_gap.aux" changed ...
+note: Running xdvipdfmx ...
+note: downloading pdftex.map
+note: downloading kanjix.map
+note: downloading ckx.map
+note: downloading texglyphlist.txt
+note: downloading pdfglyphlist.txt
+note: downloading glyphlist.txt
+note: downloading cmmi10.pfb
+note: downloading cmr10.pfb
+note: downloading cmsy10.pfb
+note: downloading cmr7.pfb
+note: downloading cmr8.pfb
+note: downloading cmex10.pfb
+note: downloading cmmi8.pfb
+note: downloading cmsy9.pfb
+note: downloading cmr9.pfb
+note: downloading cmmi9.pfb
+note: downloading cmsy8.pfb
+note: Writing `care_gap.pdf` (640.70703125 KiB)
+note: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)

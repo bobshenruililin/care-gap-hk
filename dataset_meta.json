@@ -1,0 +1,18 @@
+{
+  "n_districts": 18,
+  "sources": {
+    "dependency_2024": "C&SD Table 110-06833 (as compiled in paper)",
+    "dependency_2021": "C&SD B1130301 2021 district profiles (incl/excl FDH)",
+    "income_floor_2021": "2021 Population Census (paper Appendices A\u2013B)",
+    "population_age_2024": "C&SD B1130301 2024 summary Tables 1.1\u20131.2",
+    "h_frag_2021": "C&SD B1130301 2021 Table 1 (1+2 person HH %)",
+    "female_lfpr_2021": "C&SD B1130301 2021 district profiles (excl FDH)",
+    "rche_sub_2024": "SWD subsidised RCHE capacity by district, 31.3.2024",
+    "rche_2026": "SWD Excel capacity files, 31.3.2026"
+  },
+  "notes": [
+    "Income/floor area are 2021 census; dependency is 2024 GHS \u2014 rank stability tested in analysis.",
+    "RCHE places are capacity (stock), not admission flows; interpret as institutional supply exposure.",
+    "Female LFPR excl. FDH is a proxy for unpaid/local care pressure, not direct carer counts."
+  ]
+}

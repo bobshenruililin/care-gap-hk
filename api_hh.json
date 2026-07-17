@@ -1,0 +1,19 @@
+{
+    "header": {
+        "status": {
+            "name": "Fail",
+            "code": 1,
+            "description": "Validation error",
+            "message": [
+                "Table ID (110-06851) is not defined"
+            ],
+            "apiHelp": "https:\/\/www.censtatd.gov.hk\/EN\/web_table.html?id=110-06851&api_popup=1"
+        },
+        "count": {
+            "noOfRecords": 0,
+            "started": "2026-07-17T02:54:33+00:00",
+            "finished": "2026-07-17T02:54:33+00:00",
+            "durationSeconds": 0.000142
+        }
+    }
+}

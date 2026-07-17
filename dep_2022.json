@@ -1,0 +1,23 @@
+{
+    "header": {
+        "status": {
+            "name": "Success",
+            "code": 0,
+            "description": "Query success",
+            "param": null,
+            "apiHelp": "https:\/\/www.censtatd.gov.hk\/EN\/web_table.html?id=110-06833&api_popup=1"
+        },
+        "title": "Overall dependency ratio by District Council district",
+        "tablenote": [
+            "Figures are compiled based on the survey results of the General Household Survey (GHS) from January to December of the year concerned as well as the mid-year population estimates and may be regarded as referring to the overall situation of the whole year.     The GHS covers the land-based non-institutional population and thus does not cover (a) inmates of institutions; and (b) persons living on board vessels. The land-based non-institutional population constitutes about 99% of the Hong Kong Resident Population."
+        ],
+        "source": "General Household Survey Social Analysis and Research Section, Census and Statistics Department (Enquiry telephone no. : 3863 2791 Enquiry e-mail : ghs@censtatd.gov.hk)",
+        "count": {
+            "noOfRecords": 0,
+            "started": "2026-07-17T02:54:44+00:00",
+            "finished": "2026-07-17T02:54:44+00:00",
+            "durationSeconds": 0.004136
+        }
+    },
+    "dataSet": []
+}

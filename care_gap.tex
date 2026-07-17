@@ -1,0 +1,517 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{threeparttable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{natbib}
+
+\onehalfspacing
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\title{The Care Gap: Spatial Structure of Foreign Domestic Helper Mitigation\\
+and Community Discharge Risk in Hong Kong}
+\author{Shen Ruililin\\
+\small School of Public Health, The University of Hong Kong\\
+\small \texttt{shenrll@connect.hku.hk}}
+\date{July 2026 (revision)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Hong Kong's ageing trajectory---the ``Silver Tsunami''---has intensified district-level pressure on informal and institutional care systems. Foreign domestic helpers (FDHs) are widely treated as household-level substitutes for elder care, yet their territorial distribution is uneven and spatially structured. Using multi-year Census and Statistics Department (C\&SD) dependency ratios (2021--2024), 2021 household-fragility indicators, and Social Welfare Department (SWD) residential care home for the elderly (RCHE) \emph{capacity} stocks, we quantify district-level FDH intensity ($F/W$) and its correlates across 18 District Council areas ($n{=}18$). Ordinary least squares (OLS) models show that median household income and dwelling floor area jointly explain 87.6\% of cross-district variation in FDH intensity; queen-contiguity Moran's $I$ confirms significant positive spatial clustering of $F/W$ ($I{=}0.591$, permutation $p{=}0.0014$), while OLS residuals exhibit significant negative spatial autocorrelation ($I{=}{-}0.412$, $p{=}0.037$), indicating unmodelled neighbourhood structure. We operationalise a Community Discharge Risk Score (CDRS) as $z(R_{\mathrm{excl}})+z(H_{\mathrm{frag}})-z(F/W)$; Sham Shui Po, Eastern, Tuen Mun, and Kwun Tong rank highest. A subsidised RCHE capacity outcome model yields a null association with $F/W$ ($R^2{\approx}0.13$; FDH coefficient n.s., $p{=}0.17$), suggesting no simple territorial substitution between private migrant care and public bed \emph{stock}. Female labour-force participation excluding FDHs co-varies directionally with helper intensity but does not reach conventional significance ($r{=}0.39$, $p{=}0.11$). Rank stability of $F/W$ from 2021 to 2024 is high (Spearman $\rho{=}0.948$). We interpret findings through spatial public-health, care-desert, and global care-chain literatures, and discuss policy implications for ageing-in-place and community discharge planning.
+\end{abstract}
+
+\section{Introduction}
+
+Hong Kong confronts one of the world's most compressed demographic transitions. The proportion of the population aged 65 and over exceeded one-fifth territory-wide in the early 2020s, and official projections anticipate continued acceleration through the 2030s---a ``Silver Tsunami'' that raises simultaneous demands on health services, long-term care financing, and the organisation of daily living support \citep{phillips2005,census2024}. Unlike many high-income jurisdictions that expanded institutional care in parallel with population ageing, Hong Kong has emphasised community-based and ageing-in-place strategies, leaving households to assemble care from a patchwork of family labour, purchased services, and---distinctively---live-in migrant domestic workers \citep{chui2017}.
+
+Approximately 340{,}000 FDHs were employed in Hong Kong in the mid-2020s, overwhelmingly women from the Philippines and Indonesia on standard two-year contracts. Statutory minimum wage and live-in requirements position FDHs as a relatively affordable, round-the-clock care input for dual-income and elderly households \citep{constable2007}. C\&SD's General Household Survey (GHS) reports dependency ratios with and without FDHs; the gap between inclusive ($R_{\mathrm{incl}}$) and exclusive ($R_{\mathrm{excl}}$) ratios is our primary mitigation metric. Territory-wide, FDHs reduce measured old-age dependency by roughly seven percentage points in 2024, but this average masks sharp district divergence: Wan Chai records FDH intensity ($F/W$, the percentage mitigation of dependency) of 19.2\%, whereas North records 3.5\%.
+
+\subsection{Spatial public health, care deserts, and migrant-in-the-family care}
+
+This revision reframes the analysis from applied demography toward \emph{spatial public health}. Health geography has long documented that access to care is not merely a function of individual need but of where people live: provider location, transport friction, and neighbourhood socioeconomic composition jointly shape realised access \citep{martin2002,cummins2007}. The ``care desert'' concept---areas where demand exceeds locally available formal and informal supply---has been applied to primary care and nursing-home markets; we extend it to the joint distribution of ageing burden, household fragility, private migrant care, and institutional capacity \citep{padilla2019}.
+
+Hong Kong's FDH regime exemplifies what Yeates \citep{yeates2009} terms a \emph{global care chain}: reproductive and elder-care labour is imported across borders, subsidising local female labour-force participation while externalising training and social-protection costs to sending states \citep{graham1991}. Singapore's parallel foreign domestic worker (FDW) programme offers a regional comparator: high penetration in affluent districts, spatial clustering, and persistent reliance despite public elder-care expansion \citep{yeoh1999}. Within Hong Kong, FDHs are not a population-level substitute for public RCHE beds but a \emph{household-level} buffer whose territorial concentration may alleviate local dependency metrics without reducing system-wide discharge risk.
+
+Social determinants of health frameworks motivate our covariate structure. Median household income captures purchasing power for FDH employment and correlates with neighbourhood advantage; median dwelling floor area proxies the live-in housing context under Hong Kong's mandatory live-in rule \citep{chui2017}. Household fragility ($H_{\mathrm{frag}}$, the share of one- and two-person households) indexes the limited intra-household care reserve available when adult children are absent or overseas \citep{census2021}.
+
+We address four questions: (1)~How is FDH mitigation spatially distributed and clustered? (2)~What socioeconomic and built-environment factors predict intensity? (3)~Does higher private helper penetration associate with lower subsidised RCHE capacity per elderly resident? (4)~Can district indicators be combined into a discharge-risk score useful for spatial targeting?
+
+\section{Methods}
+
+\subsection{Study setting and units of analysis}
+
+We analyse Hong Kong's 18 District Council districts ($n{=}18$), the standard territorial unit for C\&SD GHS district tables and SWD RCHE capacity reporting. Districts nest within five Hospital Authority (HA) clusters (Hong Kong West, Hong Kong East, Kowloon Central, Kowloon East, New Territories East/West), which we use for residual visual ordering only.
+
+\subsection{Data sources}
+
+Table~\ref{tab:sources} summarises multi-year inputs. Dependency ratios for 2024 come from C\&SD Table 110-06833; 2021 district profiles (B1130301) provide historical $R_{\mathrm{incl}}$, $R_{\mathrm{excl}}$, female labour-force participation rates excluding FDHs, and household-size distributions. Median monthly household income (HK\$10{,}000) and median domestic floor area (m$^2$) are from the 2021 Population Census (Appendices~\ref{app:income}--\ref{app:floor}). Population age structure for 2024 is from B1130301 summary tables. Subsidised RCHE \emph{place capacity} by district as at 31 March 2024 is from SWD open data; total RCHE capacity (subsidised and non-subsidised) for sensitivity uses SWD March 2026 workbooks. \textbf{RCHE figures denote bed \emph{stock} (approved capacity), not admissions, occupancy, or wait-list position.}
+
+\begin{table}[H]
+\centering
+\caption{Data sources and temporal coverage}
+\label{tab:sources}
+\begin{threeparttable}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Variable & Source & Reference year \\
+\midrule
+$R_{\mathrm{incl}}$, $R_{\mathrm{excl}}$, $F/W$ & C\&SD GHS / Table 110-06833 & 2021, 2024 \\
+$H_{\mathrm{frag}}$ (1+2-person HH \%) & C\&SD B1130301 Table 1 & 2021 \\
+Female LFPR excl.\ FDH & C\&SD B1130301 profiles & 2021 \\
+Income, floor area & 2021 Population Census & 2021 \\
+\% aged 0--14, 65+ & C\&SD B1130301 summary & 2024 \\
+RCHE subsidised places & SWD capacity tables & 2024 \\
+RCHE total places & SWD Excel capacity & 2026 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item FDH intensity is derived; RCHE counts are capacity stock, not utilisation flows.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\subsection{FDH intensity and household fragility}
+
+Let $R_{\mathrm{incl}}$ and $R_{\mathrm{excl}}$ denote old-age dependency ratios including and excluding FDHs. FDH intensity is
+\begin{equation}
+  F/W = 100 \times \left(\frac{R_{\mathrm{excl}}}{R_{\mathrm{incl}}} - 1\right) \quad (\%).
+\end{equation}
+Household fragility is
+\begin{equation}
+  H_{\mathrm{frag}} = \text{\% one-person households} + \text{\% two-person households},
+\end{equation}
+from 2021 B1130301 Table 1. Higher $H_{\mathrm{frag}}$ indicates fewer co-resident adults available for informal care.
+
+\subsection{Community Discharge Risk Score (CDRS)}
+
+To synthesise burden, fragility, and mitigation for spatial public-health targeting, we define
+\begin{equation}
+  \mathrm{CDRS}_d = z(R_{\mathrm{excl},d}) + z(H_{\mathrm{frag},d}) - z(F/W_d),
+\end{equation}
+where $z(\cdot)$ denotes the district-level $z$-score (population standard deviation). Higher CDRS indicates elevated baseline dependency and household fragility relative to low FDH mitigation---a schematic index of pressure on community-based ageing-in-place and hospital discharge pathways, \emph{not} a validated clinical prediction tool. As a sensitivity analysis, we also estimate data-informed weights from a regression of subsidised RCHE capacity per 1{,}000 elderly on $(z_R, z_H, z_F)$; the calibrated score preserves the same directional structure (Appendix~\ref{app:childcare}).
+
+\subsection{Burden--mitigation matrix}
+
+Districts are classified into quadrants using territory means as cut-offs: $F/W = 7.11\%$ (2024 territory average) and $R_{\mathrm{excl}} = 512$ per 1{,}000 population aged 15--64. Quadrant I (buffered): high burden, high mitigation; II (exposed): high burden, low mitigation; III (low pressure): low on both; IV: low burden, high mitigation.
+
+\subsection{Regression and diagnostics}
+
+The primary OLS model is
+\begin{equation}
+  F/W_d = \beta_0 + \beta_1 \,\mathrm{Income}_d + \beta_2 \,\mathrm{Floor}_d + \varepsilon_d,
+\end{equation}
+with heteroskedasticity-robust standard errors. Diagnostics include variance inflation factors (VIF), Cook's distance ($4/n$ threshold), leave-one-out cross-validation (LOOCV) RMSE, coefficient stability, nonparametric bootstrap 95\% confidence intervals ($B{=}5{,}000$), and an added-variable (partial regression) plot for floor area conditional on income.
+
+A secondary outcome model regresses subsidised RCHE places per 1{,}000 elderly on $F/W$, percentage aged 65+, and income, testing whether districts with heavier private mitigation exhibit lower public capacity \emph{stock}.
+
+\subsection{Spatial autocorrelation}
+
+Queen contiguity weights on land-adjacent district pairs (harbour crossings excluded) are row-standardised. Moran's $I$ is computed for $F/W$, $R_{\mathrm{excl}}$, OLS residuals, subsidised RCHE rates, and CDRS, with permutation $p$-values ($9{,}999$ permutations).
+
+\subsection{Childcare sensitivity and temporal stability}
+
+FDH employment serves elder care and childcare. We apply a simple age-composition adjustment:
+\begin{equation}
+  F/W^{\mathrm{adj}} = (1-\theta_d)\, F/W_d, \quad \theta_d = \frac{N_{0\text{--}14}}{N_{0\text{--}14}+N_{65+}},
+\end{equation}
+down-weighting intensity where child dependents absorb helper time. Temporal stability is assessed via Spearman rank correlation of $F/W$ between 2021 and 2024.
+
+\subsection{Unpaid care proxy}
+
+Female labour-force participation excluding FDHs (2021) proxies local unpaid-care capacity and opportunity cost. We report Pearson correlation with $F/W_{2024}$; this is ecological and does not identify individual substitution.
+
+\subsection{Stress-test scenario}
+
+A stylised 10\% reduction in FDH supply scales mitigation loss by $0.10 \times F/W$ and interacts with $H_{\mathrm{frag}}$ relative to the territory mean to highlight districts where fragility amplifies exposure.
+
+\section{Results}
+
+\subsection{District rankings of FDH intensity}
+
+Table~\ref{tab:rankings} ranks districts by 2024 $F/W$. The inter-district ratio between Wan Chai and Wong Tai Sin is 4.94:1 at baseline; after childcare adjustment it narrows modestly to 4.71:1 (Appendix~\ref{app:childcare}).
+
+\begin{table}[H]
+\centering
+\caption{District FDH intensity ($F/W$, \%), 2024, ranked}
+\label{tab:rankings}
+\begin{tabular}{@{}lrl@{}}
+\toprule
+Rank & District & $F/W$ (\%) \\
+\midrule
+1 & Wan Chai & 19.16 \\
+2 & Southern & 14.62 \\
+3 & Central \& Western & 14.38 \\
+4 & Kowloon City & 11.83 \\
+5 & Eastern & 9.84 \\
+6 & Sai Kung & 8.15 \\
+7 & Tai Po & 8.00 \\
+8 & Yau Tsim Mong & 7.93 \\
+9 & Tsuen Wan & 7.82 \\
+10 & Sha Tin & 6.97 \\
+11 & Sham Shui Po & 5.85 \\
+12 & Islands & 5.67 \\
+13 & Yuen Long & 5.58 \\
+14 & Tuen Mun & 4.09 \\
+15 & Kwun Tong & 3.98 \\
+16 & Kwai Tsing & 3.95 \\
+17 & Wong Tai Sin & 3.88 \\
+18 & North & 3.46 \\
+\midrule
+\multicolumn{2}{l}{Territory average} & 7.11 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{OLS predictors of FDH intensity}
+
+Table~\ref{tab:ols} reports the primary model. Income and floor area are jointly significant; the model explains 87.6\% of variance (adjusted $R^2{=}0.859$). Each HK\$10{,}000 increase in median household income associates with 5.12 percentage points higher $F/W$ ($t{=}9.53$, $p{<}0.001$). Holding income fixed, each additional square metre of median floor area associates with 0.19 percentage points \emph{lower} $F/W$ ($t{=}{-}2.72$, $p{=}0.016$)---the income--space paradox: dense, high-income cores sustain higher helper intensity despite smaller dwellings.
+
+\begin{table}[H]
+\centering
+\caption{OLS model: FDH intensity on income and floor area ($n{=}18$)}
+\label{tab:ols}
+\begin{threeparttable}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Predictor & Coef. & SE & $t$ & $p$ \\
+\midrule
+Intercept & $-3.80$ & 3.49 & $-1.09$ & 0.293 \\
+Income (HK\$10k) & 5.122 & 0.538 & 9.53 & ${<}0.001$ \\
+Floor area (m$^2$) & $-0.191$ & 0.070 & $-2.72$ & 0.016 \\
+\midrule
+$R^2$ & \multicolumn{4}{c}{0.876} \\
+Adjusted $R^2$ & \multicolumn{4}{c}{0.859} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Ordinary least-squares standard errors. VIF: income ${\approx}1.01$, floor ${\approx}1.01$ (no multicollinearity).
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Diagnostics support stability: LOOCV RMSE${=}1.79$; mean income coefficient across leave-one-out fits$=5.13$ (SD 0.14). Bootstrap 95\% CIs: income [4.28, 6.71], floor [$-0.333$, $-0.083$]. Maximum Cook's $D{=}0.388$ (Sai Kung), exceeding the $4/n{=}0.222$ threshold---a single-district leverage flag, not overturning the income gradient. Figure~\ref{fig:av} shows the added-variable plot for floor area; the partial slope matches the multivariate estimate ($\hat\beta_{\mathrm{floor}}{=}{-}0.191$, $p{=}0.013$).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\linewidth]{figures/fig_av_plot.png}
+\caption{Added-variable plot: FDH intensity residual versus floor-area residual, both conditional on income. Partial slope $\hat\beta=-0.191$ ($p=0.013$).}
+\label{fig:av}
+\end{figure}
+
+\subsection{Spatial autocorrelation}
+
+Moran's $I$ results appear in Table~\ref{tab:moran}. FDH intensity exhibits strong positive spatial clustering ($I{=}0.591$, $p_{\mathrm{perm}}{=}0.0014$): high-intensity districts neighbour high-intensity districts, especially on Hong Kong Island and parts of Kowloon. Baseline dependency $R_{\mathrm{excl}}$ shows no significant clustering ($I{=}0.108$, $p{=}0.37$). OLS residuals show significant negative autocorrelation ($I{=}{-}0.412$, $p{=}0.037$), implying neighbouring districts have more dissimilar-than-expected model errors---consistent with spatially structured omitted factors (e.g., ethnic enclaves, employer networks, historical migration channels) not captured by income and floor area alone.
+
+\begin{table}[H]
+\centering
+\caption{Queen-contiguity Moran's $I$ ($n{=}18$)}
+\label{tab:moran}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Variable & $I$ & $E[I]$ & $p_{\mathrm{perm}}$ \\
+\midrule
+$F/W_{2024}$ & 0.591 & $-0.059$ & 0.0014 \\
+$R_{\mathrm{excl}}$ & 0.108 & $-0.059$ & 0.372 \\
+OLS residuals & $-0.412$ & $-0.059$ & 0.037 \\
+Subsidised RCHE / 1{,}000 elderly & $-0.164$ & $-0.059$ & 0.579 \\
+CDRS & $-0.006$ & $-0.059$ & 0.781 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:resid} orders OLS residuals by HA cluster, visualising the spatial structure of model error.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{figures/fig_residual_bars.png}
+\caption{OLS residuals for FDH intensity (percentage points), ordered by Hospital Authority cluster.}
+\label{fig:resid}
+\end{figure}
+
+\subsection{Temporal stability}
+
+Spearman rank correlation of $F/W$ between 2021 and 2024 is $\rho{=}0.948$ ($p{\approx}2\times10^{-9}$), indicating durable district hierarchies despite pandemic-era labour-market disruption (Figure~\ref{fig:temporal}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\linewidth]{figures/fig_temporal_fw.png}
+\caption{Temporal stability of district FDH intensity, 2021 versus 2024 (Spearman $\rho=0.948$).}
+\label{fig:temporal}
+\end{figure}
+
+\subsection{Unpaid care and female labour force}
+
+Districts with higher $F/W$ tend to exhibit higher female LFPR excluding FDHs ($r{=}0.39$), but the association is not significant at $\alpha{=}0.05$ ($p{=}0.110$; Figure~\ref{fig:unpaid}). Directionally, private helper penetration co-occurs with---rather than replaces---local female market work, consistent with a compositional story of dual-income households purchasing care, not a simple crowding-out of unpaid daughters-in-law at district scale.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{figures/fig_unpaid_care.png}
+\caption{FDH intensity versus female LFPR excluding FDHs (2021). Pearson $r=0.39$, $p=0.110$.}
+\label{fig:unpaid}
+\end{figure}
+
+\subsection{RCHE capacity outcome: null substitution}
+
+Regressing subsidised RCHE places per 1{,}000 elderly on $F/W$, elderly share, and income yields $R^2{\approx}0.13$. The FDH coefficient is positive (1.55 places per 1{,}000 elderly per percentage-point $F/W$) but not significant ($p{=}0.17$). \textbf{We find no evidence that districts with heavier private FDH mitigation hold lower subsidised RCHE capacity stock.} Public bed provision reflects historical planning, land costs, and service geography rather than a mechanical offset to private helpers.
+
+\subsection{Burden--mitigation matrix and RCHE overlay}
+
+Figure~\ref{fig:quadrant} maps districts on $F/W$ versus $R_{\mathrm{excl}}$, with point colour encoding subsidised RCHE places per 1{,}000 elderly and point size scaling with $H_{\mathrm{frag}}$.
+
+\textbf{Quadrant II (exposed)}---high $R_{\mathrm{excl}}$, below-average $F/W$: Sham Shui Po, Kwun Tong, Wong Tai Sin, Kwai Tsing, Sha Tin.
+
+\textbf{Quadrant I (buffered)}---high on both dimensions: Wan Chai, Southern, Central \& Western, Kowloon City, Eastern, Tai Po.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\linewidth]{figures/fig_quadrant_rche.png}
+\caption{Burden--mitigation matrix with subsidised RCHE capacity overlay (colour) and household fragility (size). Dashed lines: territory means ($F/W=7.11\%$, $R_{\mathrm{excl}}=512$).}
+\label{fig:quadrant}
+\end{figure}
+
+\subsection{CDRS and household fragility}
+
+Table~\ref{tab:cdrs} reports CDRS with component indicators. Sham Shui Po (1.78) combines high $R_{\mathrm{excl}}$, elevated $H_{\mathrm{frag}}$ (54.1\%), and below-average mitigation. Eastern (1.10) ranks second despite above-average $F/W$, driven by the territory's highest $R_{\mathrm{excl}}$ (603). Sai Kung records the lowest CDRS ($-2.79$), reflecting relatively low burden and above-average mitigation.
+
+\begin{table}[H]
+\centering
+\caption{Household fragility, CDRS, and quadrant classification}
+\label{tab:cdrs}
+\small
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+District & $H_{\mathrm{frag}}$ (\%) & $R_{\mathrm{excl}}$ & $F/W$ (\%) & CDRS & Quadrant \\
+\midrule
+Sham Shui Po & 54.1 & 525 & 5.85 & 1.78 & II exposed \\
+Eastern & 47.8 & 603 & 9.84 & 1.10 & I buffered \\
+Tuen Mun & 50.7 & 509 & 4.09 & 1.08 & III low pressure \\
+Kwun Tong & 49.2 & 522 & 3.98 & 1.04 & II exposed \\
+Yau Tsim Mong & 58.8 & 463 & 7.93 & 1.02 & IV \\
+Wong Tai Sin & 47.1 & 536 & 3.88 & 0.89 & II exposed \\
+Kwai Tsing & 47.0 & 526 & 3.95 & 0.64 & II exposed \\
+Wan Chai & 58.4 & 566 & 19.16 & 0.52 & I buffered \\
+Sha Tin & 47.2 & 537 & 6.97 & 0.21 & II exposed \\
+North & 48.9 & 479 & 3.46 & 0.17 & III \\
+Central \& Western & 55.6 & 517 & 14.38 & $-0.05$ & I buffered \\
+Kowloon City & 50.3 & 539 & 11.83 & $-0.18$ & I buffered \\
+Tai Po & 46.1 & 540 & 8.00 & $-0.21$ & I buffered \\
+Tsuen Wan & 47.9 & 510 & 7.82 & $-0.41$ & IV \\
+Islands & 48.9 & 429 & 5.67 & $-1.42$ & III \\
+Southern & 42.9 & 580 & 14.62 & $-1.62$ & I buffered \\
+Yuen Long & 46.6 & 435 & 5.58 & $-1.79$ & III \\
+Sai Kung & 43.3 & 451 & 8.15 & $-2.79$ & IV \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Stress-test exposure}
+
+Under a uniform 10\% FDH supply shock, Wan Chai faces the largest absolute mitigation loss (${\approx}1.92$ percentage points), amplified by high $H_{\mathrm{frag}}$ (58.4\%). Eastern combines high baseline burden with the highest stress-exposure index among major districts. North and Wong Tai Sin show lower absolute losses owing to low $F/W$, but Quadrant~II districts remain policy-priority areas because low mitigation is paired with high $R_{\mathrm{excl}}$ rather than low helper dependence alone.
+
+\section{Discussion}
+
+\subsection{Spatial structure and the income--space paradox}
+
+FDH mitigation in Hong Kong is neither randomly distributed nor fully explained by individual-level need. Significant positive spatial clustering of $F/W$ confirms that care outsourcing is a neighbourhood phenomenon: employer networks, agency geography, and ethnic-community infrastructure reinforce territorial concentrations \citep{anselin1995}. Yet OLS residuals exhibit negative spatial autocorrelation, signalling that adjacent districts sometimes diverge beyond what income and dwelling size predict---an \emph{income--space paradox} wherein affluent, compact flats (Hong Kong Island inner districts) sustain extreme intensity, while some high-income, spacious districts (Sai Kung) also rank high, pulling residuals in opposite directions.
+
+The negative partial association of floor area with intensity---higher $F/W$ where median flats are \emph{smaller}, once income is held fixed---supports the interpretation that purchasing power dominates physical space at district scale: affluent urban cores accommodate live-in help despite compact footprints, whereas larger New Territories units do not automatically translate into helper uptake without income \citep{constable2007}.
+
+\subsection{RCHE capacity: an honest null}
+
+Our outcome model does not support a simple narrative that private FDHs \emph{crowd out} public RCHE capacity at district level. The FDH coefficient is positive but insignificant; $R^2$ is low. SWD bed stock reflects decades of capital planning, NIMBY politics, and land availability; it is a poor short-run equilibrator of household care choices. \textbf{Capacity must not be read as admissions or unmet need}: high places per elderly may coexist with long wait times if demand is concentrated or community alternatives are weak. Future work should link capacity to utilisation, queue data, and Hospital Authority step-down flows.
+
+\subsection{CDRS as operational geography}
+
+The CDRS offers a transparent, reproducible index for mapping community discharge pressure. Its top ranks align with HA service-planning concerns: Sham Shui Po and Kwun Tong combine working-class housing stocks, ageing in situ, and limited FDH penetration relative to Island affluent districts. CDRS is deliberately schematic---equal $z$-score weights prioritise interpretability over predictive fit (Moran's $I$ for CDRS is null). Calibrated weights from the RCHE regression up-weight fragility ($w_H{\approx}0.26$) relative to burden ($w_R{\approx}0.07$) and mitigation ($w_F{\approx}0.67$), but the calibrated RCHE model itself explains only ${\approx}4\%$ of variance, reinforcing caution against overfitting composite scores.
+
+\subsection{Policy implications}
+
+First, territory-wide FDH counts obscure Quadrant~II exposure; spatial targeting of community care, day respite, and carer support should reference burden--mitigation gaps, not averages. Second, female LFPR and FDH intensity are positively aligned at district scale, suggesting helpers enable market work rather than uniformly substituting for daughters' unpaid care---with implications for gender-equity framing of migration policy \citep{yeates2009}. Third, childcare composition modestly attenuates cross-district comparisons but does not alter Wan Chai--Wong Tai Sin extremes. Fourth, resilience planning should stress-test uniform supply shocks: high-$F/W$ districts face larger absolute losses even when Quadrant~II districts face greater \emph{relative} discharge risk.
+
+\section{Limitations}
+
+This is an \textbf{ecological study} at district level ($n{=}18$); associations do not imply household-level causation. Power is limited: standard errors are wide and several plausible correlates (ethnicity, transport, HA cluster fixed effects) are unobserved. RCHE data measure \textbf{capacity stock}, not admissions, occupancy, or quality. The childcare adjustment uses a crude age split and cannot distinguish elder-only employers. Income and floor area are from 2021 while dependency is 2024; rank-stability results mitigate but do not eliminate temporal mismatch. Female LFPR excluding FDHs is an imperfect unpaid-care proxy. CDRS is not externally validated against discharge outcomes, readmissions, or wait-list metrics. Spatial weights treat harbour crossings as non-adjacent; alternative specifications (k-nearest-neighbour, population-weighted flows) may differ slightly.
+
+\section{Conclusion}
+
+Hong Kong's reliance on FDHs reshapes measured old-age dependency unevenly across 18 districts. Income and dwelling size explain most cross-sectional intensity variation, yet spatial clustering and residual autocorrelation indicate structurally embedded care geographies that regression covariates only partially capture. A composite discharge-risk score highlights Sham Shui Po, Eastern, Tuen Mun, and Kwun Tong as schematic priority areas, while quadrant analysis separates buffered affluent districts from exposed Kowloon clusters. Private helper penetration does not significantly predict subsidised RCHE capacity stock---public and migrant care channels operate on distinct institutional logics. Integrating FDH geography into spatial public-health planning is warranted not because any single index resolves the Silver Tsunami, but because territorial averages conceal predictable, persistent, and policy-relevant care gaps.
+
+\section*{Acknowledgements}
+The author thanks course instructors and seminar participants at HKU for comments on an earlier draft. Errors remain the author's own.
+
+\appendix
+
+\section{Median household income by district (2021 Census)}
+\label{app:income}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lr@{\hspace{2em}}lr@{}}
+\toprule
+District & Income (HK\$10k) & District & Income (HK\$10k) \\
+\midrule
+Wan Chai & 5.50 & Wong Tai Sin & 3.00 \\
+Central \& Western & 5.15 & Sham Shui Po & 3.00 \\
+Sai Kung & 4.50 & Kwun Tong & 2.91 \\
+Southern & 4.12 & Kwai Tsing & 2.96 \\
+Eastern & 4.02 & \\
+Tsuen Wan & 4.01 & \\
+Kowloon City & 3.83 & \\
+Tai Po & 3.72 & \\
+Yau Tsim Mong & 3.50 & \\
+Islands & 3.50 & \\
+Sha Tin & 3.45 & \\
+Yuen Long & 3.28 & \\
+Tuen Mun & 3.18 & \\
+North & 3.02 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Median domestic floor area by district (2021 Census)}
+\label{app:floor}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lr@{\hspace{2em}}lr@{}}
+\toprule
+District & Floor (m$^2$) & District & Floor (m$^2$) \\
+\midrule
+Islands & 50.0 & Yau Tsim Mong & 27.0 \\
+Sai Kung & 47.0 & Wan Chai & 30.0 \\
+North & 41.0 & Sham Shui Po & 30.0 \\
+Tai Po & 41.0 & \\
+Tuen Mun & 40.0 & \\
+Sha Tin & 40.0 & \\
+Yuen Long & 39.0 & \\
+Kwai Tsing & 37.0 & \\
+Southern & 37.0 & \\
+Tsuen Wan & 37.0 & \\
+Eastern & 35.0 & \\
+Wong Tai Sin & 35.0 & \\
+Kwun Tong & 35.0 & \\
+Central \& Western & 34.0 & \\
+Kowloon City & 33.0 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Childcare sensitivity}
+\label{app:childcare}
+
+Let $\theta$ be the share of child dependents among children and elderly. Table~\ref{tab:childcare} reports baseline and elder-focused $F/W$ for illustrative districts and the Wan Chai/Wong Tai Sin ratio.
+
+\begin{table}[H]
+\centering
+\caption{Childcare-adjusted FDH intensity (selected districts)}
+\label{tab:childcare}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+District & $\theta$ & $F/W$ base (\%) & $F/W^{\mathrm{adj}}$ (\%) \\
+\midrule
+Wan Chai & 0.276 & 19.16 & 13.86 \\
+Wong Tai Sin & 0.241 & 3.88 & 2.94 \\
+\midrule
+\multicolumn{2}{l}{Wan Chai / Wong Tai Sin ratio} & 4.94 & 4.71 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Adjusting for childcare demand reduces levels but preserves rank order at the extremes; the inter-district inequality ratio narrows by ${\approx}5\%$.
+
+\begin{thebibliography}{99}
+
+\bibitem[Anselin(1995)]{anselin1995}
+Anselin, L. (1995).
+\newblock Local indicators of spatial association---LISA.
+\newblock \emph{Geographical Analysis}, 27(2), 93--115.
+
+\bibitem[Anselin \& Bera(1998)]{anselin1998}
+Anselin, L., \& Bera, A.~K. (1998).
+\newblock Spatial dependence in linear regression models with an introduction to spatial econometrics.
+\newblock In A.~Ullah \& D.~E.~A.~Giles (Eds.), \emph{Handbook of Applied Economic Statistics}. Marcel Dekker.
+
+\bibitem[Chui(2017)]{chui2017}
+Chui, E.~W.~T. (2017).
+\newblock Ageing in place in Hong Kong---challenges and opportunities in a capitalist Chinese city.
+\newblock \emph{Ageing International}, 42(4), 432--450.
+
+\bibitem[Constable(2007)]{constable2007}
+Constable, N. (2007).
+\newblock \emph{Maid to Order in Hong Kong: Stories of Migrant Workers}.
+\newblock Cornell University Press.
+
+\bibitem[Cummins et al.(2007)]{cummins2007}
+Cummins, S., Curtis, S., Doyle, C., \& Stigler, M. (2007).
+\newblock Developing a deprivation index for public health and health services research.
+\newblock \emph{Environment and Planning A}, 39(6), 1463--1479.
+
+\bibitem[Graham(1991)]{graham1991}
+Graham, H. (1991).
+\newblock The changing face of caring: the shift from family to public responsibility.
+\newblock In J.~Johnson \& R.~D.~Klein (Eds.), \emph{The Politics of Health}. Routledge.
+
+\bibitem[Martin et al.(2002)]{martin2002}
+Martin, D., Wrigley, H., Barnett, S., \& Roderick, P. (2002).
+\newblock Increasing the sophistication of access measurement in a rural healthcare study.
+\newblock \emph{Health \& Place}, 8(1), 3--13.
+
+\bibitem[Padilla et al.(2019)]{padilla2019}
+Padilla, C.~M., Kihal, W., Deguen, S., \& Chauvin, P. (2019).
+\newblock \emph{Care deserts} and access to primary care: a mixed-methods study.
+\newblock \emph{BMJ Open}, 9(8), e029933.
+
+\bibitem[Phillips et al.(2005)]{phillips2005}
+Phillips, D.~R., Cheng, K.~H., \& Yeh, A.~G.~O. (2005).
+\newblock Ageing and long-term care in Hong Kong.
+\newblock \emph{International Journal of Social Welfare}, 14(3), 197--208.
+
+\bibitem[Census(2021)]{census2021}
+Hong Kong Census and Statistics Department. (2021).
+\newblock \emph{2021 Population Census: Main Results and District Profiles} (B1130301).
+\newblock Government of the HKSAR.
+
+\bibitem[Census(2024)]{census2024}
+Hong Kong Census and Statistics Department. (2024).
+\newblock \emph{Population and Household Statistics Analysed by District Council District} (B1130301, 2024 Edition).
+\newblock Government of the HKSAR.
+
+\bibitem[SWD(2024)]{swd2024}
+Social Welfare Department. (2024).
+\newblock \emph{List of Residential Care Homes for the Elderly} (capacity by district, 31 March 2024).
+\newblock HKSAR Government.
+
+\bibitem[Yeates(2009)]{yeates2009}
+Yeates, N. (2009).
+\newblock Production and distribution of care: a political economy perspective.
+\newblock \emph{Social Policy and Society}, 8(3), 379--391.
+
+\bibitem[Yeoh \& Huang(2010)]{yeoh2010}
+Yeoh, B.~S.~A., \& Huang, S. (2010).
+\newblock Foreign domestic workers and home-based care for elders in Singapore.
+\newblock \emph{Journal of Aging \& Social Policy}, 22(1), 69--88.
+
+\bibitem[Yeoh et al.(1999)]{yeoh1999}
+Yeoh, B.~S.~A., Huang, S., \& Gonzalez, J. (1999).
+\newblock Migrant female domestic workers: debating the economic, social and political impacts in Singapore.
+\newblock \emph{International Migration Review}, 33(1), 114--136.
+
+\end{thebibliography}
+
+\end{document}

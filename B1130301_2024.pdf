@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="zh-hk">
+<head>
+  
+<title>404 - Census and Statistics Department</title>
+
+<!--Source San Pro//https://fonts.google.com/selection?selection.family=Source+Sans+Pro-->
+<link href="/css/SourceSansPro.css" rel="stylesheet">
+
+<!--Google Icon//https://google.github.io/material-design-icons-->
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+<link href="/material/material-design-icons.css" rel="stylesheet">
+
+<link rel="icon" href="/apachehaus.ico"><link rel="shortcut icon" href="/apachehaus.ico">
+<link href="/icon/fontawesome/css/all.css" rel="stylesheet">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+
+
+<link rel="stylesheet" href="/css/style_d4.css">
+<!-- <link rel="stylesheet" href="../css/style_d2.css"> -->
+
+
+
+</head>
+
+<style>
+
+ .editContent{
+     margin: 40px;
+     display: block;
+     max-width: 80%;
+     position: relative;
+	
+  
+ 
+  
+  line-height: 1.3;
+  font-size: 1.3rem;
+  text-align: left; // 3
+ 
+	 
+}
+.top_box_center {
+   /* width:90%;
+     height:100%; */
+    padding-bottom: 10px;
+    background-color: #e7fafb;
+
+	display: block;
+    padding-top: 10px;    
+}
+
+.box_center {
+	
+	margin-left: auto;
+	margin-right: auto;
+	/* margin-top: 12px; */
+}
+/* @media screen and (max-width: 767px) { */
+@media screen and (max-width: 768px) {
+   
+    
+    .top_box_center {
+        /* padding-left: 15px; */
+        padding-right: 25px;
+        text-align: left;
+    }
+}
+
+* {
+	font-family: Arial, Microsoft JhengHei;
+}
+</style>
+</head>
+<script src="/js/jquery-3.5.1.min.js"></script>
+
+   <script type="text/javascript">
+   function getCookieValue(a) {
+    var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+}
+   function delayer(){
+   var lang = getCookieValue("lang");
+   window.location ="/"+lang;
+   }
+   
+   
+$(document).ready(function(){
+	if (getCookieValue("lang") == "tc"){
+		document.title = '404 - 政府統計處';
+		$('.site_logo').html('<a href="/tc/"><img class="logo" src="/img/tc/logo.svg" alt="政府統計處">&nbsp;</a>');
+		$('.site_logo_small').html('<a href="/tc/"><img class="logo" src="/img/tc/logo_s.svg" alt="政府統計處">&nbsp;</a>');
+    }else if(getCookieValue("lang") == "sc"){
+		document.title = '404 - 政府统计处';
+		$('.site_logo').html('<a href="/sc/"><img class="logo\" src="/img/sc/logo.svg" alt="政府统计处">&nbsp;</a>');
+		$('.site_logo_small').html('<a href="/sc/"><img class="logo" src="/img/sc/logo_s.svg" alt="政府统计处">&nbsp;</a>');
+	}
+	window.onload = function() {
+            setTimeout(delayer, 5000); 
+        };
+});
+   </script>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<script src="/js/jquery-3.5.1.min.js"></script>
+
+<div class="header">
+<div class="topbar" style="max-width: 1200px; margin-left: auto; margin-right: auto;">
+<div class="row">
+	<div class="col-md-6 site_logo"> <a href="/en/"><img class="logo" src="/img/en/logo.svg" alt="Census and Statistics Department">&nbsp;</a></div>	
+	<div class="col-md-6 site_logo_small">	<a href="/en/"><img class="logo" src="/img/en/logo_s.svg" alt="Census and Statistics Department">&nbsp;</a>	<div>
+</div>
+</div>
+
+
+
+
+  
+
+ 
+
+
+	<div id="print_content">
+	
+
+<div class="top_box_center">	
+	
+	
+
+	
+
+	
+		 
+   <div class="editContent">
+    <p><strong>Sorry, the page you requested cannot be found.</strong><br>
+	You will be re-directed to the homepage of the C&SD Website in 5 seconds.  You can also click the following link to access the homepage of the C&SD Website.<br>
+	<a href="https://www.censtatd.gov.hk/en/">https://www.censtatd.gov.hk/en/</a></p>
+	<br>
+	<p><strong>對不起，我們找不到你要的網頁。</strong><br>
+	你將於 5 秒內被轉往政府政府統計處網站的主頁。你亦可按以下連結瀏覽政府統計處網站的主頁。<br>
+	<a href="https://www.censtatd.gov.hk/tc/">https://www.censtatd.gov.hk/tc/</a></p>
+	<br>
+	<p><strong>对不起，我们找不到你要的网页。</strong><br>
+	你将于 5 秒内被转往政府政府统计处网站的主页。你亦可按以下连结浏览政府统计处网站的主页。<br>
+	<a href="https://www.censtatd.gov.hk/sc/">https://www.censtatd.gov.hk/sc/</a></p>
+	<br>
+	</div>
+
+    
+		
+		
+
+
+	
+
+
+        
+       
+
+
+
+</div></div>
+
+</body>
+</html>
+
